@@ -4,7 +4,15 @@ require('dotenv').config();
 
 const app = express();
 
-// Add this line to serve static files
+// Add security headers
+app.use((req, res, next) => {
+    res.setHeader(
+        'Content-Security-Policy',
+        "default-src 'self'; script-src 'self' 'unsafe-inline' https://vercel.live; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.spotify.com;"
+    );
+    next();
+});
+
 app.use(express.static('.'));
 
 app.get('/api/now-playing', async (req, res) => {
