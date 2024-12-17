@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andy Jung</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Andy Jung</h1>
+        <div class="header-links">
+            <div class="resume-links">
+                <a href="Resume_SWE.pdf" class="resume-button">SWE Resume</a>
+                <a href="Resume_ML.pdf" class="resume-button">ML Resume</a>
+            </div>
+            <button id="theme-toggle" aria-label="Toggle dark mode">
+                <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="intro">
+            <p>Mathematics @ UWaterloo • ML Engineer • Software Developer</p>
+            <p class="bio">Building AI systems that bridge the gap between complex algorithms and practical applications. Focused on creating technology that makes digital interactions more human.</p>
+        </section>
+
+        <section id="now-playing" class="now-playing">
+            <div class="spotify-container">
+                <svg class="spotify-icon" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                </svg>
+                <div class="track-info">
+                    <p class="now-playing-label">Currently listening to:</p>
+                    <p id="current-track">Not playing</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+            <div class="experience-grid">
+                <article class="exp-card">
+                    <div class="exp-header">
+                        <h3>Software Developer</h3>
+                        <span>Standard Data (YC)</span>
+                    </div>
+                    <p>Built Python web scraping tool for DoD job aggregation + React/Node.js responsive website</p>
+                </article>
+
+                <article class="exp-card">
+                    <div class="exp-header">
+                        <h3>ML Engineer</h3>
+                        <span>GoodGang Labs</span>
+                    </div>
+                    <p>Developed audio-to-gesture ML models for 3D avatars, improving recognition by 25%</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <article class="project">
+                    <h3>AutoEQ</h3>
+                    <div class="tech-tags">
+                        <span>Python</span>
+                        <span>Flask</span>
+                        <span>Spotify API</span>
+                    </div>
+                    <p>Audiophile-grade equalizer that adapts to your music and headphones in real-time, because every track deserves to be heard at its best</p>
+                </article>
+
+                <article class="project">
+                    <h3>Mixify</h3>
+                    <div class="tech-tags">
+                        <span>React</span>
+                        <span>Node.js</span>
+                        <span>OAuth</span>
+                    </div>
+                    <p>Breaking down platform barriers to create the ultimate music library - because your playlists shouldn't be limited by where your music lives</p>
+                </article>
+
+                <article class="project">
+                    <h3>Text2Avatar</h3>
+                    <div class="tech-tags">
+                        <span>Python</span>
+                        <span>OpenAI</span>
+                        <span>MediaPipe</span>
+                    </div>
+                    <p>Teaching AI to speak body language - transforming text into lifelike avatar performances with natural gestures and expressions</p>
+                </article>
+
+                <article class="project">
+                    <h3>Synthetic Data Generator</h3>
+                    <div class="tech-tags">
+                        <span>Python</span>
+                        <span>GAN</span>
+                        <span>OpenCV</span>
+                    </div>
+                    <p>Creating diverse digital humans with GANs - because AI should learn from faces of all kinds</p>
+                </article>
+
+                <article class="project">
+                    <h3>GoAI</h3>
+                    <div class="tech-tags">
+                        <span>Python</span>
+                        <span>Keras</span>
+                        <span>NumPy</span>
+                    </div>
+                    <p>A Go-playing AI that learned from thousands of professional matches to master the ancient game's elegant strategies</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Technologies</h2>
+            <div class="tech-cloud">
+                <span>Python</span>
+                <span>React</span>
+                <span>Node.js</span>
+                <span>TensorFlow</span>
+                <span>PyTorch</span>
+                <span>Docker</span>
+                <span>AWS</span>
+                <span>SQL</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="contact-links">
+            <a href="mailto:a8jung@uwaterloo.ca">a8jung@uwaterloo.ca</a>
+            <a href="https://linkedin.com/in/andyj">LinkedIn</a>
+            <a href="tel:226-637-4600">226-637-4600</a>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        // Function to set theme
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+
+        // Check for saved theme preference, otherwise use system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme);
+        } else {
+            // Check system preference
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        }
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        });
+    </script>
+
+    <script>
+        async function updateNowPlaying() {
+            try {
+                const response = await fetch('/api/now-playing');
+                const data = await response.json();
+                const container = document.querySelector('.now-playing');
+                const trackElement = document.getElementById('current-track');
+                
+                if (data.isPlaying) {
+                    container.style.display = 'block';
+                    container.classList.add('playing');
+                    trackElement.innerHTML = `
+                        <a href="${data.url}" target="_blank">
+                            ${data.title} - ${data.artist}
+                        </a>
+                    `;
+                    console.log('Playing:', data.title); // Debug log
+                } else {
+                    container.style.display = 'none';
+                    container.classList.remove('playing');
+                    console.log('Not playing'); // Debug log
+                }
+            } catch (error) {
+                console.error('Failed to fetch currently playing track:', error);
+                document.querySelector('.now-playing').style.display = 'none';
+            }
+        }
+
+        // Update every 30 seconds
+        updateNowPlaying();
+        setInterval(updateNowPlaying, 30000);
+    </script>
+</body>
+</html> 
