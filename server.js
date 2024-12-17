@@ -1,19 +1,21 @@
 const express = require('express');
 const axios = require('axios');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
 
-// Add security headers
+// Add security headers with updated CSP
 app.use((req, res, next) => {
     res.setHeader(
         'Content-Security-Policy',
-        "default-src 'self'; script-src 'self' 'unsafe-inline' https://vercel.live; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.spotify.com;"
+        "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.spotify.com https://vercel.live; frame-src 'self' https://vercel.live;"
     );
     next();
 });
 
-app.use(express.static('.'));
+// Serve static files
+app.use(express.static(path.join(__dirname)));
 
 app.get('/api/now-playing', async (req, res) => {
     try {
@@ -43,6 +45,11 @@ app.get('/api/now-playing', async (req, res) => {
         console.error('Error details:', error.response ? error.response.data : error.message);
         res.json({ isPlaying: false });
     }
+});
+
+// Handle all other routes by serving index.html
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(3000, () => console.log('Server running on port 3000')); 
