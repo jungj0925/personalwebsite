@@ -103,4 +103,13 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Add explicit favicon serving
+app.get('/favicon.svg', (req, res) => {
+    res.sendFile(path.join(__dirname, 'favicon.svg'), {
+        headers: {
+            'Content-Type': 'image/svg+xml'
+        }
+    });
+});
+
 app.listen(3000, () => console.log('Server running on port 3000')); 
