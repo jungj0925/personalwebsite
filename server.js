@@ -105,7 +105,7 @@ app.get('*', (req, res) => {
 
 // Add explicit favicon serving
 app.get('/favicon.svg', (req, res) => {
-    res.sendFile(path.join(__dirname, 'favicon.svg'), {
+    res.sendFile(path.join(__, 'favicon.svg'), {
         headers: {
             'Content-Type': 'image/svg+xml'
         }
