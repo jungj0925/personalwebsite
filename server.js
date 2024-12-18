@@ -17,17 +17,68 @@ app.use((req, res, next) => {
 // Serve static files
 app.use(express.static(path.join(__dirname)));
 
-app.get('/api/now-playing', async (req, res) => {
+async function refreshAccessToken() {
     try {
-        // Using the direct player endpoint instead of user-specific endpoint
-        const response = await axios.get(
-            'https://api.spotify.com/v1/me/player/currently-playing',
-            {
+        const response = await axios.post('https://accounts.spotify.com/api/token', 
+            new URLSearchParams({
+                grant_type: 'refresh_token',
+                refresh_token: process.env.SPOTIFY_REFRESH_TOKEN,
+            }), {
                 headers: {
-                    'Authorization': `Bearer ${process.env.SPOTIFY_ACCESS_TOKEN}`
+                    'Authorization': 'Basic ' + Buffer.from(
+                        process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET
+                    ).toString('base64'),
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 }
             }
         );
+
+        process.env.SPOTIFY_ACCESS_TOKEN = response.data.access_token;
+        
+        // If a new refresh token is provided, update it
+        if (response.data.refresh_token) {
+            process.env.SPOTIFY_REFRESH_TOKEN = response.data.refresh_token;
+        }
+
+        return response.data.access_token;
+    } catch (error) {
+        console.error('Error refreshing token:', error.message);
+        throw error;
+    }
+}
+
+async function makeSpotifyRequest(url) {
+    try {
+        const response = await axios.get(url, {
+            headers: {
+                'Authorization': `Bearer ${process.env.SPOTIFY_ACCESS_TOKEN}`
+            }
+        });
+        return response;
+    } catch (error) {
+        if (error.response && error.response.status === 401) {
+            // Token expired, refresh it and try again
+            const newToken = await refreshAccessToken();
+            const retryResponse = await axios.get(url, {
+                headers: {
+                    'Authorization': `Bearer ${newToken}`
+                }
+            });
+            return retryResponse;
+        }
+        throw error;
+    }
+}
+
+app.get('/api/now-playing', async (req, res) => {
+    try {
+        const response = await makeSpotifyRequest(
+            'https://api.spotify.com/v1/me/player/currently-playing'
+        );
+
+        if (response.status === 204) {
+            return res.json({ isPlaying: false });
+        }
 
         if (response.data && response.data.item) {
             const track = response.data.item;
@@ -42,8 +93,8 @@ app.get('/api/now-playing', async (req, res) => {
             res.json({ isPlaying: false });
         }
     } catch (error) {
-        console.error('Error details:', error.response ? error.response.data : error.message);
-        res.json({ isPlaying: false });
+        console.error('Error fetching now playing:', error.message);
+        res.json({ isPlaying: false, error: error.message });
     }
 });
 
