@@ -1,9 +1,13 @@
 const express = require('express');
 const axios = require('axios');
 const path = require('path');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
+
+// Use CORS middleware
+app.use(cors());
 
 // Add security headers with updated CSP
 app.use((req, res, next) => {
