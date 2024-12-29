@@ -49,6 +49,7 @@ async function refreshAccessToken() {
 
 async function makeSpotifyRequest(url) {
     try {
+        console.log(process.env.SPOTIFY_ACCESS_TOKEN);
         const response = await axios.get(url, {
             headers: {
                 'Authorization': `Bearer ${process.env.SPOTIFY_ACCESS_TOKEN}`
