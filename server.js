@@ -54,6 +54,7 @@ async function makeSpotifyRequest(url) {
                 'Authorization': `Bearer ${process.env.SPOTIFY_ACCESS_TOKEN}`
             }
         });
+        console.log(response);
         return response;
     } catch (error) {
         if (error.response && error.response.status === 401) {
