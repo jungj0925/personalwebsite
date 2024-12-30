@@ -187,7 +187,7 @@
             try {
                 console.log('Fetching now-playing data...');
                 console.log("testing");
-                const response = await fetch('https://personalwebsite-two-vert.vercel.app/');
+                const response = await fetch('https://personalwebsite-two-vert.vercel.app/api/now-playing');
                 const data = await response.json();
                 const container = document.querySelector('.now-playing');
                 const trackElement = document.getElementById('current-track');
